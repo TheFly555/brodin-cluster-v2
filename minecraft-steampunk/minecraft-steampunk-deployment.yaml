@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-steampunk
+  namespace: minecraft-steampunk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft-steampunk
+  template:
+    metadata:
+      labels:
+        app: minecraft-steampunk
+    spec:
+      containers:
+      - name: minecraft
+        image: itzg/minecraft-server
+        ports:
+        - containerPort: 25565
+        # volumeMounts:
+        # - name: minecraftdata
+        #   mountPath: /data
+        env:
+        - name: CF_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minecraft-steampunk-secret
+              key: CF_TOKEN
+        - name: EULA
+          value: "TRUE"
+        - name: TYPE
+          value: "AUTO_CURSEFORGE"
+        - name: CF_SLUG
+          value: "prominence-2-rpg"
+        - name: CF_FILE_ID
+          value: "5188751"
+      # volumes:
+      # - name: minecraftdata
+      #   hostPath:
+      #     path: ./minecraft-data/data

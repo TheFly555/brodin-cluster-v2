@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-service
+  namespace: minecraft-steampunk
+spec:
+  selector:
+    app: minecraft-steampunk
+  ports:
+    - protocol: TCP
+      port: 25565
+      targetPort: 25565
+  type: ClusterIP

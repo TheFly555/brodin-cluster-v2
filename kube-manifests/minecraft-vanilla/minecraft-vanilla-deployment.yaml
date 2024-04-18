@@ -1,0 +1,30 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: minecraft-server
+#   namespace: minecraft-vanilla
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: minecraft-server
+#   template:
+#     metadata:
+#       labels:
+#         app: minecraft-server
+#     spec:
+#       containers:
+#       - name: minecraft
+#         image: itzg/minecraft-server
+#         ports:
+#         - containerPort: 25565
+#         volumeMounts:
+#         - name: minecraft-data
+#           mountPath: /data
+#         env:
+#         - name: EULA
+#           value: "TRUE"
+#       volumes:
+#       - name: minecraft-data
+#         persistentVolumeClaim:
+#           claimName: minecraft-data-pvc
