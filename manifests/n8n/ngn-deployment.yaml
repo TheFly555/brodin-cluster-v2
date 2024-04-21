@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: n8n
-  namespace: n8n
 spec:
   replicas: 1
   selector:
@@ -16,13 +15,18 @@ spec:
       containers:
       - name: n8n
         image: docker.n8n.io/n8nio/n8n
+        env:
+        - name: WEBHOOK_URL
+          value: "https://n8n.brodin.nl"
         ports:
         - containerPort: 5678
         volumeMounts:
-        - name: n8n-data
+        - name: n8n-volume
           mountPath: /home/node/.n8n
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
       volumes:
-      - name: n8n-data
+      - name: n8n-volume
         persistentVolumeClaim:
-          claimName: n8n-pvc
-
+          claimName: n8n-data-pvc
