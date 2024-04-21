@@ -1,2 +1,2 @@
-do_token   = "token"
-civo_token = "token"
+do_token   = "dop_v1_c18098f7dab28c86e370f702ef86878cbf133c99ff8b85dd344dc1dfb77181f4"
+civo_token = "dop_v1_c18098f7dab28c86e370f702ef86878cbf133c99ff8b85dd344dc1dfb77181f4"
