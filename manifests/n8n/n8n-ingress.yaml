@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: n8n
+  namespace: n8n
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`n8n.brodin.nl`)
+      kind: Rule
+      services:
+        - name: n8n-service
+          port: 80
+  tls:
+    secretName: brodin-nl-tls

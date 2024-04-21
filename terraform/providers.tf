@@ -15,6 +15,9 @@ variable "kube_config" {
 
 ### Providers ###
 
+# HTTP request provider
+provider "http" {}
+
 # Digital Ocean Provider
 terraform {
   required_providers {
@@ -30,6 +33,18 @@ provider "digitalocean" {
   token = var.do_token
 }
 
+# Helm Provider
+provider "helm" {
+  kubernetes {
+    config_path = var.kube_config
+  }
+
+}
+
+# Kubernetes Provider
+provider "kubernetes" {
+  config_path = var.kube_config
+}
 
 # Civo Provider
 # terraform {
@@ -45,16 +60,3 @@ provider "digitalocean" {
 #   token = var.civo_token
 #   region = "LON1"
 # }
-
-# Helm Provider
-provider "helm" {
-  kubernetes {
-    config_path = var.kube_config
-  }
-  
-}
-
-# Kubernetes Provider
-provider "kubernetes" {
-  config_path = var.kube_config
-}

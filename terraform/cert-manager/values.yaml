@@ -1,0 +1,11 @@
+installCRDs: false
+replicaCount: 1
+# extraArgs:
+#   - --dns01-recursive-nameservers=ns1.digitalocean.com,ns2.digitalocean.com,ns3.digitalocean.com
+#   - --dns01-recursive-nameservers-only
+# podDnsPolicy: None
+# podDnsConfig:
+#   nameservers:
+#     - "ns1.digitalocean.com"
+#     - "ns2.digitalocean.com"
+#     - "ns3.digitalocean.com"
